@@ -100,6 +100,13 @@ export const quickActions = [
   { id: '5', label: 'Guided learning', icon: 'school', color: '#fbbc04' },
 ]
 
+export const offlineQuickActions = [
+  { id: '1', label: 'Summarize content', icon: 'summarize', color: '#9b72cb' },
+  { id: '2', label: 'Describe image', icon: 'image_search', color: '#4285f4' },
+  { id: '3', label: 'Write anything', icon: 'edit', color: '#34a853' },
+  { id: '4', label: 'Proofread document', icon: 'spellcheck', color: '#ea4335' },
+]
+
 export const tools = [
   { id: 'deep-research', name: 'Deep Research', icon: 'travel_explore' },
   { id: 'create-videos', name: 'Create videos', icon: 'movie', badge: 'Veo 3.1' },
@@ -118,8 +125,8 @@ export const addMenuItems = [
 
 export const modes = [
   { id: 'fast', name: 'Fast', description: 'Answers quickly', badge: 'New' },
-  { id: 'thinking', name: 'Thinking', description: 'Solves complex problems', badge: 'New' },
-  { id: 'pro', name: 'Pro', description: 'Thinks longer for advanced math & code', badge: 'New' },
+  { id: 'thinking', name: 'Thinking', description: 'Solves complex problems' },
+  { id: 'pro', name: 'Pro', description: 'Thinks longer for advanced math & code' },
 ]
 
 export interface PricingFeature {

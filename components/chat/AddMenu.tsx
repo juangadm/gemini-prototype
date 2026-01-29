@@ -80,7 +80,7 @@ export default function AddMenu({ onItemSelect, offlineMode = false }: AddMenuPr
                   {/* Offline tooltip */}
                   {isDisabled && (
                     <div className="absolute left-full top-1/2 -translate-y-1/2 ml-2 px-3 py-1.5 bg-[#3c4043] text-white text-xs rounded-lg whitespace-nowrap opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-200 z-50">
-                      Unavailable working offline
+                      Go online to access
                       <div className="absolute top-1/2 right-full -translate-y-1/2 border-4 border-transparent border-r-[#3c4043]"></div>
                     </div>
                   )}

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import ModePicker from './ModePicker'
 import ToolsMenu from './ToolsMenu'
 import AddMenu from './AddMenu'
-import { quickActions } from '@/lib/mockData'
+import { quickActions, offlineQuickActions } from '@/lib/mockData'
 
 interface InputAreaProps {
   onSend: (message: string) => void
@@ -62,7 +62,7 @@ export default function InputArea({ onSend, showSuggestions, onQuickAction, offl
           {/* Right tools - Mode picker, Mic, Send */}
           <div className="flex items-center gap-1">
             {/* Mode picker */}
-            <ModePicker selectedMode={selectedMode} onModeChange={setSelectedMode} />
+            <ModePicker selectedMode={selectedMode} onModeChange={setSelectedMode} offlineMode={offlineMode} />
 
             {/* Microphone (when empty) / Send button (when has text) */}
             {message.trim() ? (
@@ -75,9 +75,25 @@ export default function InputArea({ onSend, showSuggestions, onQuickAction, offl
                 </span>
               </button>
             ) : (
-              <button className="p-2 rounded-full hover:bg-[#e8eaed] transition-colors">
-                <span className="material-symbols-outlined text-[#5f6368] text-xl">mic</span>
-              </button>
+              <div className="relative group/mic">
+                <button
+                  className={`p-2 rounded-full transition-colors ${
+                    offlineMode
+                      ? 'opacity-40 cursor-not-allowed'
+                      : 'hover:bg-[#e8eaed] cursor-pointer'
+                  }`}
+                >
+                  <span className="material-symbols-outlined text-[#5f6368] text-xl">mic</span>
+                </button>
+
+                {/* Offline tooltip */}
+                {offlineMode && (
+                  <div className="absolute bottom-full right-0 mb-2 px-3 py-1.5 bg-[#3c4043] text-white text-xs rounded-lg whitespace-nowrap opacity-0 invisible group-hover/mic:opacity-100 group-hover/mic:visible transition-all duration-200 z-50">
+                    Go online to access
+                    <div className="absolute top-full right-4 border-4 border-transparent border-t-[#3c4043]"></div>
+                  </div>
+                )}
+              </div>
             )}
           </div>
         </div>
@@ -86,7 +102,7 @@ export default function InputArea({ onSend, showSuggestions, onQuickAction, offl
       {/* Quick action suggestions */}
       {showSuggestions && (
         <div className="flex flex-wrap justify-center gap-2 mt-4">
-          {quickActions.map((action) => (
+          {(offlineMode ? offlineQuickActions : quickActions).map((action) => (
             <button
               key={action.id}
               onClick={() => onQuickAction?.(action.label)}

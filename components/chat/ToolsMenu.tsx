@@ -45,7 +45,7 @@ export default function ToolsMenu({ onToolSelect, offlineMode = false }: ToolsMe
       {/* Offline tooltip */}
       {offlineMode && (
         <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-[#3c4043] text-white text-xs rounded-lg whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-          Unavailable working offline
+          Go online to access
           <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#3c4043]"></div>
         </div>
       )}
