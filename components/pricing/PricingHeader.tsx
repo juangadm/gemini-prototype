@@ -58,7 +58,7 @@ export default function PricingHeader() {
           {/* Try Gemini CTA */}
           <Link
             href="/"
-            className="px-6 py-2.5 bg-black text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-colors"
+            className="px-6 py-2.5 bg-[#1a73e8] text-white text-sm font-medium rounded-full hover:bg-[#1557b0] transition-colors"
           >
             Try Gemini
           </Link>

@@ -1,10 +1,5 @@
 'use client'
 
-interface PlanFeature {
-  text: string
-  included: boolean
-}
-
 interface PlanCardProps {
   name: string
   description: string
@@ -30,15 +25,17 @@ export default function PlanCard({
   isPopular = false,
   previousTier,
 }: PlanCardProps) {
+  const isFree = price === 0
+
   return (
     <div className={`
-      plan-card bg-white border border-gray-200 p-6 flex flex-col h-full
-      ${isPopular ? 'ring-2 ring-black' : ''}
+      plan-card bg-white border border-gray-200 p-6 flex flex-col h-full relative
+      ${isPopular ? 'ring-2 ring-[#1a73e8]' : ''}
     `}>
       {/* Popular badge */}
       {isPopular && (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-          <span className="px-3 py-1 bg-black text-white text-xs font-medium rounded-full">
+          <span className="px-3 py-1 bg-[#1a73e8] text-white text-xs font-medium rounded-full">
             Most Popular
           </span>
         </div>
@@ -58,8 +55,9 @@ export default function PlanCard({
           </span>
         )}
         <span className="text-2xl font-medium text-black">
-          {price === 0 ? 'Free' : `$${price}/mo`}
+          {price === 0 ? '$0' : `$${price}`}
         </span>
+        <span className="text-sm text-[#666]"> / month</span>
         {promoText && (
           <div className="mt-1">
             <span className="text-sm text-[#1a73e8] font-medium">{promoText}</span>
@@ -69,11 +67,17 @@ export default function PlanCard({
 
       {/* CTA buttons */}
       <div className="space-y-2 mb-6">
-        <button className="w-full py-3 px-4 bg-black text-white text-sm font-medium rounded-full hover:bg-gray-800 transition-colors">
-          {cta}
-        </button>
+        {isFree ? (
+          <button className="w-full py-3 px-4 bg-white text-[#1f1f1f] text-sm font-medium rounded-full border border-gray-300 hover:bg-gray-50 transition-colors">
+            {cta}
+          </button>
+        ) : (
+          <button className="w-full py-3 px-4 bg-[#1a73e8] text-white text-sm font-medium rounded-full hover:bg-[#1557b0] transition-colors">
+            {cta}
+          </button>
+        )}
         {ctaSecondary && (
-          <button className="w-full py-3 px-4 bg-white text-black text-sm font-medium rounded-full border border-gray-300 hover:bg-gray-50 transition-colors">
+          <button className="w-full py-3 px-4 bg-white text-[#1a73e8] text-sm font-medium rounded-full border border-[#1a73e8] hover:bg-[#e8f0fe] transition-colors">
             {ctaSecondary}
           </button>
         )}
@@ -81,8 +85,9 @@ export default function PlanCard({
 
       {/* Tier badge */}
       {previousTier && (
-        <div className="mb-4 py-2 px-3 bg-gray-100 rounded-lg">
-          <span className="text-xs text-[#666]">Everything in {previousTier} and:</span>
+        <div className="mb-4 py-2 px-3 bg-[#e8f0fe] rounded-lg flex items-center gap-2">
+          <span className="material-symbols-outlined text-[#1a73e8] text-lg">check_circle</span>
+          <span className="text-xs text-[#1f1f1f]">Everything in {previousTier} and:</span>
         </div>
       )}
 

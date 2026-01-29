@@ -65,7 +65,7 @@ export default function SubscriptionsPage() {
           </h1>
 
           {/* CTA */}
-          <button className="px-8 py-4 bg-black text-white text-lg font-medium rounded-full hover:bg-gray-800 transition-colors">
+          <button className="px-8 py-4 bg-[#1a73e8] text-white text-lg font-medium rounded-full hover:bg-[#1557b0] transition-colors">
             Upgrade
           </button>
         </div>
@@ -108,7 +108,7 @@ export default function SubscriptionsPage() {
                   className={`
                     px-6 py-2.5 rounded-full text-sm font-medium transition-colors
                     ${selectedTab === tab
-                      ? 'bg-black text-white'
+                      ? 'bg-[#1a73e8] text-white'
                       : 'text-[#666] hover:text-black'}
                   `}
                 >
@@ -160,7 +160,7 @@ export default function SubscriptionsPage() {
                 className={`
                   px-8 py-3 rounded-full text-sm font-medium transition-colors
                   ${selectedBenefitTab === 'pro'
-                    ? 'bg-black text-white'
+                    ? 'bg-[#1a73e8] text-white'
                     : 'text-[#666] hover:text-black'}
                 `}
               >
@@ -171,7 +171,7 @@ export default function SubscriptionsPage() {
                 className={`
                   px-8 py-3 rounded-full text-sm font-medium transition-colors
                   ${selectedBenefitTab === 'ultra'
-                    ? 'bg-black text-white'
+                    ? 'bg-[#1a73e8] text-white'
                     : 'text-[#666] hover:text-black'}
                 `}
               >
