@@ -74,22 +74,9 @@ export default function SubscriptionsPage() {
       {/* Pricing Cards */}
       <section className="py-16 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {pricingPlans.map((plan, index) => (
-              <PlanCard
-                key={plan.id}
-                name={plan.name}
-                description={plan.description}
-                price={plan.price}
-                promoText={plan.promoText}
-                cta={plan.cta}
-                ctaSecondary={plan.ctaSecondary}
-                features={plan.features}
-                isPopular={plan.id === 'ai-pro'}
-                previousTier={
-                  index > 0 ? pricingPlans[index - 1].name : undefined
-                }
-              />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
+            {pricingPlans.map((plan) => (
+              <PlanCard key={plan.id} plan={plan} />
             ))}
           </div>
         </div>

@@ -115,72 +115,153 @@ export const modes = [
   { id: 'pro', name: 'Pro', description: 'Thinks longer for advanced math & code', badge: 'New' },
 ]
 
-export const pricingPlans = [
+export interface PricingFeature {
+  title: string
+  description: string
+  hasGoogleIcon?: boolean
+}
+
+export interface GeminiAppSection {
+  title: string
+  subtitle?: string
+  description?: string
+  bullets?: string[]
+}
+
+export interface PricingPlan {
+  id: string
+  name: string
+  description: string
+  price: number
+  priceSubtext: string
+  promoText: string | null
+  cta: string
+  ctaSecondary?: string | null
+  previousTier: string | null
+  geminiAppSection: GeminiAppSection
+  features: PricingFeature[]
+  footerText: string | null
+}
+
+export const pricingPlans: PricingPlan[] = [
   {
     id: 'free',
     name: 'Free',
-    description: 'Great for trying out Gemini',
+    description: 'Get everyday help from Google AI to tackle tasks at work, school or home.',
     price: 0,
-    originalPrice: null,
+    priceSubtext: '/ month with a Google Account',
     promoText: null,
     cta: 'Get started',
+    ctaSecondary: null,
+    previousTier: null,
+    geminiAppSection: {
+      title: 'Gemini app',
+      subtitle: 'Your personal, proactive and powerful AI Assistant',
+      bullets: [
+        'Access to 3 Flash',
+        'Varying access to 3 Pro',
+        'Image generation and editing',
+        'Deep Research',
+        'Gemini Live',
+        'Canvas',
+        'Gems',
+      ],
+    },
     features: [
-      'Access to Gemini 2.5 Flash',
-      'Image generation with Imagen 3',
-      'File and image uploads',
-      'Gems for custom AI assistants',
-      'Limited usage',
+      { title: '100 monthly AI credits', description: 'Credits used for video generation across Flow and Whisk' },
+      { title: 'Flow', description: 'Access to our AI filmmaking tool to create cinematic scenes and stories, including limited access to Veo 3.1' },
+      { title: 'Whisk', description: 'Generate and animate images with Imagen 4 and Veo 3' },
+      { title: 'NotebookLM', description: 'Research and writing assistant' },
+      { title: 'Storage', description: '15 GB of total storage for Photos, Drive, and Gmail' },
     ],
+    footerText: null,
   },
   {
     id: 'ai-plus',
-    name: 'AI Plus',
-    description: 'More features for everyday use',
+    name: 'Google AI Plus',
+    description: 'Get more access to new and powerful features to boost your productivity and creativity.',
     price: 7.99,
-    originalPrice: null,
-    promoText: '$3.99/mo for 2 months',
-    cta: 'Get AI Plus',
+    priceSubtext: '/ month',
+    promoText: '$3.99 / month for 2 months',
+    cta: 'Get started',
+    ctaSecondary: null,
+    previousTier: 'Free',
+    geminiAppSection: {
+      title: 'Gemini app',
+      description: 'Get enhanced access to our most intelligent model 3 Pro, Deep Research, image generation with Nano Banana Pro, as well as video creation features with limited access to Veo 3.1 Fast',
+    },
     features: [
-      'Everything in Free and:',
-      'Higher usage limits',
-      'Priority access during peak times',
-      'Gemini in Google Workspace',
+      { title: '200 monthly AI credits', description: 'Credits used for video generation across Flow and Whisk' },
+      { title: 'Flow', description: 'More access in our AI filmmaking tool to create cinematic scenes and stories, including limited access to Veo 3.1' },
+      { title: 'Whisk', description: 'More access to image-to-video creation with Veo 3' },
+      { title: 'Google Search', description: 'More access to Gemini 3 Pro to unlock interactive simulations and tools to answer your most complex questions, and the latest experiments in Search Labs.', hasGoogleIcon: true },
+      { title: 'NotebookLM', description: 'Research and writing assistant with more Audio Overviews, notebooks, and more' },
+      { title: 'Gemini in Gmail, Vids, and more', description: 'Access Gemini directly in Google apps' },
+      { title: 'Gemini in Chrome (early access)', description: 'Your personal assistant to browse the web' },
+      { title: 'Storage', description: '200 GB of total storage for Photos, Drive, and Gmail' },
     ],
+    footerText: 'Google AI Plus is available in more than 160 countries and territories',
   },
   {
     id: 'ai-pro',
-    name: 'AI Pro',
-    description: 'Best for professionals and creators',
+    name: 'Google AI Pro',
+    description: 'Get higher access to new and powerful features to boost your productivity and creativity.',
     price: 19.99,
-    originalPrice: null,
-    promoText: 'Free for 1 month',
-    cta: 'Get AI Pro',
+    priceSubtext: '/ month',
+    promoText: '$0 for one month',
+    cta: 'Get started',
     ctaSecondary: 'Free for students',
+    previousTier: 'Free',
+    geminiAppSection: {
+      title: 'Gemini app',
+      description: 'Get higher access to our most intelligent model 3 Pro, Deep Research, and image generation with Nano Banana Pro, plus unlock video generation with Veo 3.1 Fast',
+    },
     features: [
-      'Everything in AI Plus and:',
-      'Access to Gemini 2.5 Pro',
-      'Deep Research mode',
-      'Veo 3.1 video generation',
-      '2TB Google One storage',
-      'Gemini in Gmail, Docs, Sheets',
+      { title: '1,000 monthly AI credits', description: 'Credits used for video generation across Flow and Whisk' },
+      { title: 'Flow', description: 'Higher access in our AI filmmaking tool to create cinematic scenes and stories, including limited access to Veo 3.1' },
+      { title: 'Whisk', description: 'Higher access to image-to-video creation with Veo 3' },
+      { title: 'Google Search', description: 'Higher access to Gemini 3 Pro to unlock interactive simulations and tools to answer your most complex questions, plus Deep Search, agentic capabilities, and the latest experiments in Search Labs.', hasGoogleIcon: true },
+      { title: 'Jules', description: 'Higher limits to our asynchronous coding agent for software developers' },
+      { title: 'Gemini Code Assist and Gemini CLI', description: 'Higher daily request limits in Gemini CLI and Gemini Code Assist IDE extensions' },
+      { title: 'Google Antigravity', description: 'Higher rate limits to agent model in Google Antigravity, our agentic development platform' },
+      { title: 'NotebookLM', description: 'Research and writing assistant with 5x more Audio Overviews, notebooks, and more' },
+      { title: 'Gemini in Gmail, Docs, Vids, and more', description: 'Access Gemini directly in Google apps' },
+      { title: 'Google Home Premium (Standard plan)', description: '30 days of event history and Gemini features' },
+      { title: 'Gemini in Chrome (early access)', description: 'Your personal assistant to browse the web' },
+      { title: 'Storage', description: '2 TB of total storage for Photos, Drive, and Gmail' },
     ],
+    footerText: 'Google AI Pro is available in more than 150 countries and territories',
   },
   {
     id: 'ai-ultra',
-    name: 'AI Ultra',
-    description: 'Maximum capabilities for power users',
+    name: 'Google AI Ultra',
+    description: 'Unlock the highest level of access to the best of Google AI and exclusive features.',
     price: 249.99,
-    originalPrice: null,
-    promoText: '$124.99/mo for 3 months',
-    cta: 'Get AI Ultra',
+    priceSubtext: '/ month',
+    promoText: '$124.99 / month for 3 months',
+    cta: 'Get started',
+    ctaSecondary: null,
+    previousTier: 'Google AI Pro',
+    geminiAppSection: {
+      title: 'Gemini app',
+      description: 'Highest limits to models and features including video generation with Veo 3.1, plus access to Deep Think and Gemini Agent (US only, English only)',
+    },
     features: [
-      'Everything in AI Pro and:',
-      'Highest usage limits',
-      'Early access to new features',
-      'Priority support',
-      '30TB Google One storage',
-      'NotebookLM Plus',
+      { title: '25,000 monthly AI credits', description: 'Credits used for video generation across Flow and Whisk' },
+      { title: 'Flow', description: 'Highest access in our AI filmmaking tool to create cinematic scenes and stories, including limited access to Veo 3.1' },
+      { title: 'Whisk', description: 'Highest access for image-to-video creation with Veo 3' },
+      { title: 'Google Search', description: 'Highest access to Gemini 3 Pro to unlock interactive simulations and tools to answer your most complex questions, plus Deep Search, agentic capabilities, and the latest experiments in Search Labs.', hasGoogleIcon: true },
+      { title: 'Jules', description: 'Highest limits to our asynchronous coding agent for software developers' },
+      { title: 'Gemini Code Assist and Gemini CLI', description: 'Highest daily request limits in Gemini CLI and Gemini Code Assist IDE extensions' },
+      { title: 'Google Antigravity', description: 'Highest rate limits to agent model in Google Antigravity, our agentic development platform' },
+      { title: 'NotebookLM', description: 'Highest limits and best model capabilities' },
+      { title: 'Gemini in Gmail, Docs, Vids, and more', description: 'Highest limits to Gemini directly in Google apps' },
+      { title: 'Google Home Premium (Advanced plan)', description: '24/7 video history, event descriptions, and more' },
+      { title: 'Project Mariner (early access)', description: 'Streamline tasks with an agentic research prototype' },
+      { title: 'YouTube Premium individual plan', description: 'YouTube ad-free, offline, and in the background' },
+      { title: 'Storage', description: '30 TB of total storage for Photos, Drive, and Gmail' },
     ],
+    footerText: 'Google AI Ultra is available in more than 140 countries',
   },
 ]
 
