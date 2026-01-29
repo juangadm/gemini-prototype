@@ -5,9 +5,10 @@ import { tools } from '@/lib/mockData'
 
 interface ToolsMenuProps {
   onToolSelect?: (toolId: string) => void
+  offlineMode?: boolean
 }
 
-export default function ToolsMenu({ onToolSelect }: ToolsMenuProps) {
+export default function ToolsMenu({ onToolSelect, offlineMode = false }: ToolsMenuProps) {
   const [isOpen, setIsOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
 
@@ -28,14 +29,26 @@ export default function ToolsMenu({ onToolSelect }: ToolsMenuProps) {
   }
 
   return (
-    <div className="relative" ref={menuRef}>
+    <div className="relative group" ref={menuRef}>
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-[#e8eaed] transition-colors"
+        onClick={() => !offlineMode && setIsOpen(!isOpen)}
+        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-colors ${
+          offlineMode
+            ? 'opacity-40 cursor-not-allowed'
+            : 'hover:bg-[#e8eaed] cursor-pointer'
+        }`}
       >
-        <span className="material-symbols-outlined text-[#5f6368] text-xl">build</span>
+        <span className="material-symbols-outlined text-[#5f6368] text-xl">page_info</span>
         <span className="text-sm text-[#5f6368]">Tools</span>
       </button>
+
+      {/* Offline tooltip */}
+      {offlineMode && (
+        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-[#3c4043] text-white text-xs rounded-lg whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+          Unavailable working offline
+          <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#3c4043]"></div>
+        </div>
+      )}
 
       {isOpen && (
         <div className="absolute bottom-full left-0 mb-2 w-64 tools-menu p-2 z-50">

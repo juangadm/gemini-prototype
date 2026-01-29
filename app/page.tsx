@@ -7,19 +7,22 @@ const demos = [
     title: 'BIG',
     subtitle: '(Project Oasis)',
     description: 'Offline nano model for paid subscribers — premium feature differentiation',
-    status: 'in-progress' as const,
+    status: 'ready' as const,
+    href: '/oasis/chat',
   },
   {
     number: '02',
     title: 'Pricing Optimization',
     description: 'Anchor on daily vs monthly pricing to improve conversion',
-    status: 'in-progress' as const,
+    status: 'ready' as const,
+    href: '/daily/chat',
   },
   {
     number: '03',
     title: 'Gemini \'Work\' Tooltip',
     description: 'Show session progress/work done in a tooltip',
-    status: 'in-progress' as const,
+    status: 'ready' as const,
+    href: '/work/chat',
   },
 ]
 
@@ -68,6 +71,7 @@ export default function Home() {
                 subtitle={demo.subtitle}
                 description={demo.description}
                 status={demo.status}
+                href={demo.href}
               />
             ))}
           </div>

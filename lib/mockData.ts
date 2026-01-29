@@ -109,6 +109,13 @@ export const tools = [
   { id: 'visual-layout', name: 'Visual layout', icon: 'team_dashboard', badge: 'Labs' },
 ]
 
+export const addMenuItems = [
+  { id: 'upload-files', name: 'Upload files', icon: 'upload_file' },
+  { id: 'add-from-drive', name: 'Add from Drive', icon: 'add_to_drive' },
+  { id: 'photos', name: 'Photos', icon: 'photo_library' },
+  { id: 'notebooklm', name: 'NotebookLM', icon: 'auto_stories' },
+]
+
 export const modes = [
   { id: 'fast', name: 'Fast', description: 'Answers quickly', badge: 'New' },
   { id: 'thinking', name: 'Thinking', description: 'Solves complex problems', badge: 'New' },

@@ -3,15 +3,17 @@
 import { useState } from 'react'
 import ModePicker from './ModePicker'
 import ToolsMenu from './ToolsMenu'
+import AddMenu from './AddMenu'
 import { quickActions } from '@/lib/mockData'
 
 interface InputAreaProps {
   onSend: (message: string) => void
   showSuggestions?: boolean
   onQuickAction?: (action: string) => void
+  offlineMode?: boolean
 }
 
-export default function InputArea({ onSend, showSuggestions, onQuickAction }: InputAreaProps) {
+export default function InputArea({ onSend, showSuggestions, onQuickAction, offlineMode = false }: InputAreaProps) {
   const [message, setMessage] = useState('')
   const [selectedMode, setSelectedMode] = useState('fast')
 
@@ -48,15 +50,13 @@ export default function InputArea({ onSend, showSuggestions, onQuickAction }: In
 
         {/* Bottom toolbar */}
         <div className="flex items-center justify-between px-3 pb-3">
-          {/* Left tools - Add file & Tools only */}
+          {/* Left tools - Add menu & Tools */}
           <div className="flex items-center gap-1">
-            {/* Add file button */}
-            <button className="p-2 rounded-full hover:bg-[#e8eaed] transition-colors">
-              <span className="material-symbols-outlined text-[#5f6368] text-xl">add</span>
-            </button>
+            {/* Add menu */}
+            <AddMenu offlineMode={offlineMode} />
 
             {/* Tools menu */}
-            <ToolsMenu />
+            <ToolsMenu offlineMode={offlineMode} />
           </div>
 
           {/* Right tools - Mode picker, Mic, Send */}

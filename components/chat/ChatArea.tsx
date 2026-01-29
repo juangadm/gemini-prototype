@@ -6,7 +6,11 @@ import MessageBubble from './MessageBubble'
 import InputArea from './InputArea'
 import GeminiLogo from '@/components/shared/GeminiLogo'
 
-export default function ChatArea() {
+interface ChatAreaProps {
+  offlineMode?: boolean
+}
+
+export default function ChatArea({ offlineMode = false }: ChatAreaProps) {
   const [messages, setMessages] = useState<Message[]>([])
   const [showDemo, setShowDemo] = useState(false)
 
@@ -78,6 +82,7 @@ export default function ChatArea() {
             onSend={handleSend}
             showSuggestions={true}
             onQuickAction={handleQuickAction}
+            offlineMode={offlineMode}
           />
 
           {/* Demo button */}
@@ -104,6 +109,7 @@ export default function ChatArea() {
             onSend={handleSend}
             showSuggestions={false}
             onQuickAction={handleQuickAction}
+            offlineMode={offlineMode}
           />
         </>
       )}
