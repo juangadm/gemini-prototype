@@ -101,12 +101,12 @@ export const quickActions = [
 ]
 
 export const tools = [
-  { id: 'deep-research', name: 'Deep Research', icon: 'language', description: 'Search the web thoroughly' },
-  { id: 'create-videos', name: 'Create videos', icon: 'videocam', badge: 'Veo 3.1' },
-  { id: 'create-images', name: 'Create images', icon: 'image', emoji: '🍌' },
-  { id: 'canvas', name: 'Canvas', icon: 'draw' },
-  { id: 'guided-learning', name: 'Guided Learning', icon: 'school' },
-  { id: 'visual-layout', name: 'Visual layout', icon: 'grid_view', badge: 'Labs' },
+  { id: 'deep-research', name: 'Deep Research', icon: 'travel_explore' },
+  { id: 'create-videos', name: 'Create videos', icon: 'movie', badge: 'Veo 3.1' },
+  { id: 'create-images', name: 'Create images', emoji: '🍌' },
+  { id: 'canvas', name: 'Canvas', icon: 'note_stack_add' },
+  { id: 'guided-learning', name: 'Guided Learning', icon: 'auto_stories' },
+  { id: 'visual-layout', name: 'Visual layout', icon: 'team_dashboard', badge: 'Labs' },
 ]
 
 export const modes = [

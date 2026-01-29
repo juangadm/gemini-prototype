@@ -60,60 +60,53 @@ export default function ChatArea() {
 
   return (
     <div className="flex-1 flex flex-col h-full bg-white">
-      {/* Messages area */}
-      <div className="flex-1 overflow-y-auto light-scrollbar">
-        {isEmpty ? (
-          // Empty state
-          <div className="h-full flex flex-col items-center justify-center px-4">
-            {/* Gemini logo */}
-            <div className="mb-8">
-              <GeminiLogo size="xl" animated />
-            </div>
+      {isEmpty ? (
+        // Empty state - centered layout
+        <div className="flex-1 flex flex-col items-center justify-center px-4">
+          {/* Gemini logo */}
+          <div className="mb-8">
+            <GeminiLogo size="xl" animated />
+          </div>
 
-            {/* Greeting */}
-            <h1 className="text-4xl font-normal text-[#1f1f1f] mb-2">
-              Hi Juan, Where should we start?
-            </h1>
+          {/* Greeting */}
+          <h1 className="text-4xl font-normal text-[#1f1f1f] mb-8">
+            Hi Juan, Where should we start?
+          </h1>
 
-            {/* Quick actions */}
-            <div className="flex flex-wrap justify-center gap-3 mt-8 max-w-[600px]">
-              {quickActions.map((action) => (
-                <button
-                  key={action.id}
-                  onClick={() => handleQuickAction(action.label)}
-                  className="flex items-center gap-2 px-4 py-3 bg-[#f0f4f9] rounded-full hover:bg-[#e8eaed] transition-colors gemini-chip"
-                >
-                  <span
-                    className="material-symbols-outlined text-xl"
-                    style={{ color: action.color }}
-                  >
-                    {action.icon}
-                  </span>
-                  <span className="text-sm text-[#1f1f1f]">{action.label}</span>
-                </button>
+          {/* Input area - centered */}
+          <InputArea
+            onSend={handleSend}
+            showSuggestions={true}
+            onQuickAction={handleQuickAction}
+          />
+
+          {/* Demo button */}
+          <button
+            onClick={loadDemoChat}
+            className="mt-6 text-sm text-[#1a73e8] hover:underline"
+          >
+            Load demo conversation
+          </button>
+        </div>
+      ) : (
+        // Chat mode - messages with input at bottom
+        <>
+          <div className="flex-1 overflow-y-auto light-scrollbar">
+            <div className="max-w-[800px] mx-auto px-4 py-8 space-y-8">
+              {messages.map((message) => (
+                <MessageBubble key={message.id} message={message} />
               ))}
             </div>
-
-            {/* Demo button */}
-            <button
-              onClick={loadDemoChat}
-              className="mt-8 text-sm text-[#1a73e8] hover:underline"
-            >
-              Load demo conversation
-            </button>
           </div>
-        ) : (
-          // Messages list
-          <div className="max-w-[800px] mx-auto px-4 py-8 space-y-8">
-            {messages.map((message) => (
-              <MessageBubble key={message.id} message={message} />
-            ))}
-          </div>
-        )}
-      </div>
 
-      {/* Input area - fixed at bottom */}
-      <InputArea onSend={handleSend} />
+          {/* Input area - fixed at bottom */}
+          <InputArea
+            onSend={handleSend}
+            showSuggestions={false}
+            onQuickAction={handleQuickAction}
+          />
+        </>
+      )}
     </div>
   )
 }

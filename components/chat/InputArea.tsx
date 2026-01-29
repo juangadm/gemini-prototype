@@ -3,12 +3,15 @@
 import { useState } from 'react'
 import ModePicker from './ModePicker'
 import ToolsMenu from './ToolsMenu'
+import { quickActions } from '@/lib/mockData'
 
 interface InputAreaProps {
   onSend: (message: string) => void
+  showSuggestions?: boolean
+  onQuickAction?: (action: string) => void
 }
 
-export default function InputArea({ onSend }: InputAreaProps) {
+export default function InputArea({ onSend, showSuggestions, onQuickAction }: InputAreaProps) {
   const [message, setMessage] = useState('')
   const [selectedMode, setSelectedMode] = useState('fast')
 
@@ -29,7 +32,7 @@ export default function InputArea({ onSend }: InputAreaProps) {
   return (
     <div className="w-full max-w-[800px] mx-auto px-4 pb-4">
       {/* Input container */}
-      <div className="bg-[#f0f4f9] rounded-[32px] overflow-hidden border border-gray-200">
+      <div className="bg-[#f0f4f9] rounded-[32px] border border-gray-200">
         {/* Text input */}
         <div className="px-6 pt-4 pb-2">
           <textarea
@@ -45,7 +48,7 @@ export default function InputArea({ onSend }: InputAreaProps) {
 
         {/* Bottom toolbar */}
         <div className="flex items-center justify-between px-3 pb-3">
-          {/* Left tools */}
+          {/* Left tools - Add file & Tools only */}
           <div className="flex items-center gap-1">
             {/* Add file button */}
             <button className="p-2 rounded-full hover:bg-[#e8eaed] transition-colors">
@@ -54,39 +57,52 @@ export default function InputArea({ onSend }: InputAreaProps) {
 
             {/* Tools menu */}
             <ToolsMenu />
-
-            {/* Mode picker */}
-            <ModePicker selectedMode={selectedMode} onModeChange={setSelectedMode} />
           </div>
 
-          {/* Right tools */}
+          {/* Right tools - Mode picker, Mic, Send */}
           <div className="flex items-center gap-1">
-            {/* Microphone */}
-            <button className="p-2 rounded-full hover:bg-[#e8eaed] transition-colors">
-              <span className="material-symbols-outlined text-[#5f6368] text-xl">mic</span>
-            </button>
+            {/* Mode picker */}
+            <ModePicker selectedMode={selectedMode} onModeChange={setSelectedMode} />
 
-            {/* Send button */}
-            <button
-              onClick={handleSubmit}
-              disabled={!message.trim()}
-              className={`
-                p-2 rounded-full transition-colors
-                ${message.trim()
-                  ? 'bg-[#1a73e8] hover:bg-[#1557b0]'
-                  : 'bg-[#dadce0] cursor-not-allowed'}
-              `}
-            >
-              <span className={`
-                material-symbols-outlined text-xl
-                ${message.trim() ? 'text-white' : 'text-[#9aa0a6]'}
-              `}>
-                arrow_upward
-              </span>
-            </button>
+            {/* Microphone (when empty) / Send button (when has text) */}
+            {message.trim() ? (
+              <button
+                onClick={handleSubmit}
+                className="p-2 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] transition-colors"
+              >
+                <span className="material-symbols-outlined text-xl text-white">
+                  arrow_forward
+                </span>
+              </button>
+            ) : (
+              <button className="p-2 rounded-full hover:bg-[#e8eaed] transition-colors">
+                <span className="material-symbols-outlined text-[#5f6368] text-xl">mic</span>
+              </button>
+            )}
           </div>
         </div>
       </div>
+
+      {/* Quick action suggestions */}
+      {showSuggestions && (
+        <div className="flex flex-wrap justify-center gap-2 mt-4">
+          {quickActions.map((action) => (
+            <button
+              key={action.id}
+              onClick={() => onQuickAction?.(action.label)}
+              className="flex items-center gap-2 px-4 py-2.5 bg-[#f0f4f9] rounded-full hover:bg-[#e8eaed] transition-colors"
+            >
+              <span
+                className="material-symbols-outlined text-lg"
+                style={{ color: action.color }}
+              >
+                {action.icon}
+              </span>
+              <span className="text-sm text-[#1f1f1f]">{action.label}</span>
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* Footer disclaimer */}
       <p className="text-center text-xs text-[#5f6368] mt-3">

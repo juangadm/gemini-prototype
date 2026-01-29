@@ -53,18 +53,6 @@ export default function ModePicker({ selectedMode, onModeChange }: ModePickerPro
                   ${selectedMode === mode.id ? 'bg-[#e8f0fe]' : 'hover:bg-[#f0f4f9]'}
                 `}
               >
-                {/* Radio button */}
-                <div className={`
-                  w-5 h-5 rounded-full border-2 flex items-center justify-center
-                  ${selectedMode === mode.id
-                    ? 'border-[#1a73e8]'
-                    : 'border-[#5f6368]'}
-                `}>
-                  {selectedMode === mode.id && (
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#1a73e8]" />
-                  )}
-                </div>
-
                 {/* Mode info */}
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
@@ -77,6 +65,11 @@ export default function ModePicker({ selectedMode, onModeChange }: ModePickerPro
                   </div>
                   <span className="text-xs text-[#5f6368]">{mode.description}</span>
                 </div>
+
+                {/* Checkmark for selected */}
+                {selectedMode === mode.id && (
+                  <span className="material-symbols-outlined text-[#1a73e8] text-xl">check</span>
+                )}
               </button>
             ))}
           </div>
