@@ -279,6 +279,52 @@ export const pricingPlans: PricingPlan[] = [
   },
 ]
 
+// Daily usage stats for Work Tooltip prototype
+export interface UsageStat {
+  used: number
+  limit: number
+  label: string
+  valueLabel: string // positive framing label
+}
+
+export interface DailyUsageStats {
+  tier: 'plus' | 'pro' | 'ultra'
+  prompts: UsageStat
+  images: UsageStat
+  deepResearch: UsageStat
+  thinkingPrompts: UsageStat
+  resetTime: string
+}
+
+export const dailyUsageStats: DailyUsageStats = {
+  tier: 'pro',
+  prompts: {
+    used: 12,
+    limit: 100,
+    label: 'Pro prompts',
+    valueLabel: 'complex problems solved'
+  },
+  images: {
+    used: 5,
+    limit: 200,
+    label: 'Images',
+    valueLabel: 'images created'
+  },
+  deepResearch: {
+    used: 1,
+    limit: 20,
+    label: 'Deep Research',
+    valueLabel: 'deep research completed'
+  },
+  thinkingPrompts: {
+    used: 24,
+    limit: 300,
+    label: 'Thinking',
+    valueLabel: 'thinking sessions'
+  },
+  resetTime: '8h 23m',
+}
+
 export const faqItems = [
   {
     question: 'What\'s the difference between AI Pro and AI Ultra?',

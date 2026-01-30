@@ -7,9 +7,10 @@ import { gems, recentChats, myStuffItems } from '@/lib/mockData'
 interface SidebarProps {
   isOpen: boolean
   onClose: () => void
+  onMenuClick?: () => void
 }
 
-export default function Sidebar({ isOpen, onClose }: SidebarProps) {
+export default function Sidebar({ isOpen, onClose, onMenuClick }: SidebarProps) {
   const [gemsExpanded, setGemsExpanded] = useState(true)
   const [chatsExpanded, setChatsExpanded] = useState(true)
 
@@ -34,14 +35,25 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           light-scrollbar overflow-y-auto
         `}
       >
+        {/* Sidebar header - Menu + Search */}
+        <div className="flex items-center justify-between px-2 py-2">
+          <button
+            onClick={onMenuClick}
+            className="p-2 rounded-full hover:bg-[#e8eaed] transition-colors"
+            aria-label="Menu"
+          >
+            <span className="material-symbols-outlined text-[#5f6368]">menu</span>
+          </button>
+          <button
+            className="p-2 rounded-full hover:bg-[#e8eaed] transition-colors"
+            aria-label="Search"
+          >
+            <span className="material-symbols-outlined text-[#5f6368]">search</span>
+          </button>
+        </div>
+
         {/* Top section */}
         <div className="p-3 space-y-1">
-          {/* Search */}
-          <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-full hover:bg-[#e8eaed] transition-colors text-left">
-            <span className="material-symbols-outlined text-[#5f6368]">search</span>
-            <span className="text-[#5f6368] text-sm">Search</span>
-          </button>
-
           {/* New chat */}
           <div className="flex items-center gap-2">
             <button className="flex-1 flex items-center gap-3 px-3 py-2.5 rounded-full hover:bg-[#e8eaed] transition-colors text-left">
