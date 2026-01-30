@@ -40,22 +40,37 @@ export default function Home() {
 
           {/* Title */}
           <h1 className="text-4xl md:text-5xl font-medium text-black mb-4">
-            Gemini Monetization Prototypes
+            Gemini Monetization
           </h1>
 
           {/* Subtitle */}
           <p className="text-lg text-[#5f6368] mb-6 max-w-2xl mx-auto">
-            Small interventions to improve subscription conversion &amp; retention
+            Working prototypes to improve paid subscription and retention for Gemini App
           </p>
 
           {/* Author */}
-          <div className="space-y-1">
+          <div className="space-y-2">
             <p className="text-base font-medium text-black">
               Juan Gabriel Delgado Montes
             </p>
-            <p className="text-sm text-[#5f6368]">
-              DeepMind Product Interview
-            </p>
+            <div className="flex justify-center gap-4">
+              <a
+                href="https://juangabriel.xyz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-[#1a73e8] hover:underline"
+              >
+                Portfolio
+              </a>
+              <a
+                href="https://www.linkedin.com/in/juangadm/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-[#1a73e8] hover:underline"
+              >
+                LinkedIn
+              </a>
+            </div>
           </div>
         </div>
       </header>
@@ -84,7 +99,7 @@ export default function Home() {
       <footer className="py-12 px-6 mt-auto">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-sm text-[#5f6368]">
-            Built for DeepMind Product Lead Interview
+            Created for DeepMind team
           </p>
         </div>
       </footer>
