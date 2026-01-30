@@ -4,11 +4,12 @@ import DemoCard from '@/components/home/DemoCard'
 const demos = [
   {
     number: '01',
-    title: 'BIG',
-    subtitle: '(Project Oasis)',
-    description: 'Offline nano model for paid subscribers — premium feature differentiation',
+    title: 'Project Oasis',
+    description: 'Nano available offline for paid subscribers. Upside lift with low cannibalization risk',
     status: 'ready' as const,
     href: '/oasis/chat',
+    docsUrl: 'https://docs.google.com/document/d/184mi1qCfB005RYHQzcc3GlIFbuEDE3wiLzIew9Gf5bo/edit',
+    docsLabel: 'Project Oasis',
   },
   {
     number: '02',
@@ -72,6 +73,8 @@ export default function Home() {
                 description={demo.description}
                 status={demo.status}
                 href={demo.href}
+                docsUrl={demo.docsUrl}
+                docsLabel={demo.docsLabel}
               />
             ))}
           </div>
