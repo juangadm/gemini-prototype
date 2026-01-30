@@ -2,52 +2,53 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import GeminiLogo from './GeminiLogo'
 import WorkStatsPopup from '@/components/work/WorkStatsPopup'
 import { dailyUsageStats } from '@/lib/mockData'
 
-interface HeaderProps {
+interface MainHeaderProps {
   showProBadge?: boolean
   showOfflineBadge?: boolean
   showWorkStats?: boolean
-  conversationTitle?: string
-  onMenuClick?: () => void
   subscriptionsUrl?: string
 }
 
-export default function Header({ showProBadge = true, showOfflineBadge = false, showWorkStats = false, conversationTitle, onMenuClick, subscriptionsUrl = '/subscriptions' }: HeaderProps) {
+export default function MainHeader({
+  showProBadge = true,
+  showOfflineBadge = false,
+  showWorkStats = false,
+  subscriptionsUrl = '/subscriptions',
+}: MainHeaderProps) {
   const [workStatsOpen, setWorkStatsOpen] = useState(false)
-  return (
-    <header className="flex items-center justify-between px-4 py-3 bg-white border-b border-gray-200">
-      {/* Left section */}
-      <div className="flex items-center gap-3">
-        <button
-          onClick={onMenuClick}
-          className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-          aria-label="Menu"
-        >
-          <span className="material-symbols-outlined text-[#5f6368]">menu</span>
-        </button>
 
-        <Link href="/" className="flex items-center gap-2">
-          <GeminiLogo size="sm" />
+  return (
+    <header className="flex items-center justify-between px-4 py-3 bg-white">
+      {/* Left section */}
+      <div className="flex items-center gap-2">
+        <Link href="/" className="flex items-center">
           <span className="text-xl font-normal text-[#1f1f1f]">Gemini</span>
         </Link>
 
-        {/* Work Stats Icon */}
+        {/* Work Stats Dot - 6px gradient dot with pulse animation */}
         {showWorkStats && (
-          <div className="relative ml-1">
+          <div className="relative group">
             <button
               onClick={() => setWorkStatsOpen(!workStatsOpen)}
-              className={`p-1.5 rounded-full transition-colors ${
-                workStatsOpen
-                  ? 'bg-[#e8f0fe] text-[#1a73e8]'
-                  : 'hover:bg-gray-100 text-[#5f6368]'
-              }`}
+              className="ml-1 flex items-center justify-center w-[14px] h-[14px] cursor-pointer"
               aria-label="View today's progress"
             >
-              <span className="material-symbols-outlined text-xl">bar_chart</span>
+              <span
+                className="w-[8px] h-[8px] rounded-full transition-transform duration-150 group-hover:scale-[1.3] animate-pulse-subtle"
+                style={{
+                  background: 'linear-gradient(135deg, #4285f4, #9c6fe5)',
+                }}
+              />
             </button>
+            {/* Hover tooltip - only show when popup is closed */}
+            {!workStatsOpen && (
+              <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 px-2 py-1 bg-[#202124] text-white text-xs rounded whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none">
+                Today's progress
+              </div>
+            )}
             <WorkStatsPopup
               isOpen={workStatsOpen}
               onClose={() => setWorkStatsOpen(false)}
@@ -78,20 +79,6 @@ export default function Header({ showProBadge = true, showOfflineBadge = false, 
                 </div>
               </div>
             </div>
-          </div>
-        )}
-
-        {conversationTitle && (
-          <div className="flex items-center gap-1 ml-2">
-            <span className="text-sm text-[#5f6368]">/</span>
-            <button className="flex items-center gap-1 px-2 py-1 rounded-lg hover:bg-gray-100 transition-colors">
-              <span className="text-sm text-[#5f6368] max-w-[200px] truncate">
-                {conversationTitle}
-              </span>
-              <span className="material-symbols-outlined text-[#5f6368] text-base">
-                expand_more
-              </span>
-            </button>
           </div>
         )}
       </div>

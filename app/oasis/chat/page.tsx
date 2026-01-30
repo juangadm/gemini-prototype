@@ -1,29 +1,30 @@
 'use client'
 
 import { useState } from 'react'
-import Header from '@/components/shared/Header'
 import Sidebar from '@/components/chat/Sidebar'
+import MainHeader from '@/components/chat/MainHeader'
 import ChatArea from '@/components/chat/ChatArea'
 
 export default function OasisChatPage() {
   const [sidebarOpen, setSidebarOpen] = useState(true)
 
   return (
-    <div className="h-screen flex flex-col bg-white">
-      {/* Header */}
-      <Header
-        showProBadge={true}
-        showOfflineBadge={true}
+    <div className="h-screen flex bg-white">
+      {/* Sidebar */}
+      <Sidebar
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
         onMenuClick={() => setSidebarOpen(!sidebarOpen)}
-        subscriptionsUrl="/oasis/subscriptions"
       />
 
-      {/* Main content */}
-      <div className="flex-1 flex overflow-hidden">
-        {/* Sidebar */}
-        <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-
-        {/* Chat area */}
+      {/* Main content area */}
+      <div className="flex-1 flex flex-col overflow-hidden">
+        <MainHeader
+          showProBadge={true}
+          showOfflineBadge={true}
+          showWorkStats={false}
+          subscriptionsUrl="/oasis/subscriptions"
+        />
         <ChatArea offlineMode={true} />
       </div>
     </div>

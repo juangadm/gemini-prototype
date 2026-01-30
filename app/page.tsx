@@ -22,8 +22,7 @@ const demos = [
     number: '03',
     title: 'Pricing Optimization',
     description: 'Anchor on daily vs monthly pricing to improve conversion',
-    status: 'ready' as const,
-    href: '/daily/chat',
+    status: 'in-progress' as const,
   },
 ]
 
