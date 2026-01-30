@@ -13,17 +13,17 @@ const demos = [
   },
   {
     number: '02',
+    title: 'Gemini \'Work\' Tooltip',
+    description: 'Show the labor of Gemini to consistently demonstrate the value users are getting from use',
+    status: 'ready' as const,
+    href: '/work/chat',
+  },
+  {
+    number: '03',
     title: 'Pricing Optimization',
     description: 'Anchor on daily vs monthly pricing to improve conversion',
     status: 'ready' as const,
     href: '/daily/chat',
-  },
-  {
-    number: '03',
-    title: 'Gemini \'Work\' Tooltip',
-    description: 'Show session progress/work done in a tooltip',
-    status: 'ready' as const,
-    href: '/work/chat',
   },
 ]
 
