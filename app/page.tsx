@@ -14,7 +14,7 @@ const demos = [
   {
     number: '02',
     title: 'Gemini \'Work\' Tooltip',
-    description: 'Show the labor of Gemini to consistently demonstrate the value users are getting from use',
+    description: 'Show the labor of Gemini to consistently demonstrate the value users are getting from subscription',
     status: 'ready' as const,
     href: '/work/chat',
   },
