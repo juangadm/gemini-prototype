@@ -4,6 +4,7 @@ import { PricingPlan, PricingFeature, GeminiAppSection } from '@/lib/mockData'
 
 interface PlanCardProps {
   plan: PricingPlan
+  showOfflineMode?: boolean
 }
 
 // Google G icon component
@@ -104,7 +105,7 @@ function TierBadge({ previousTier }: { previousTier: string }) {
   )
 }
 
-export default function PlanCard({ plan }: PlanCardProps) {
+export default function PlanCard({ plan, showOfflineMode = false }: PlanCardProps) {
   const isFree = plan.price === 0
   const hasBullets = plan.geminiAppSection.bullets && plan.geminiAppSection.bullets.length > 0
 
@@ -159,6 +160,18 @@ export default function PlanCard({ plan }: PlanCardProps) {
         <GeminiAppBullets section={plan.geminiAppSection} />
       ) : (
         <GeminiAppDescription section={plan.geminiAppSection} />
+      )}
+
+      {/* Offline mode line for paid plans */}
+      {showOfflineMode && !isFree && (
+        <div className="flex items-start gap-2 mb-6">
+          <span className="material-symbols-outlined text-[#1a73e8] mt-0.5 flex-shrink-0" style={{ fontSize: '18px' }}>
+            check
+          </span>
+          <span className="text-base text-[#666]" style={{ lineHeight: '22.4px' }}>
+            Use Gemini offline
+          </span>
+        </div>
       )}
 
       {/* Feature blocks */}
