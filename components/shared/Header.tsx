@@ -8,9 +8,10 @@ interface HeaderProps {
   showOfflineBadge?: boolean
   conversationTitle?: string
   onMenuClick?: () => void
+  subscriptionsUrl?: string
 }
 
-export default function Header({ showProBadge = true, showOfflineBadge = false, conversationTitle, onMenuClick }: HeaderProps) {
+export default function Header({ showProBadge = true, showOfflineBadge = false, conversationTitle, onMenuClick, subscriptionsUrl = '/subscriptions' }: HeaderProps) {
   return (
     <header className="flex items-center justify-between px-4 py-3 bg-white border-b border-gray-200">
       {/* Left section */}
@@ -72,7 +73,7 @@ export default function Header({ showProBadge = true, showOfflineBadge = false, 
       <div className="flex items-center gap-2">
         {showProBadge && (
           <Link
-            href="/subscriptions"
+            href={subscriptionsUrl}
             className="flex items-center gap-1 px-3 py-1.5 bg-[#f0f4f9] rounded-lg hover:bg-[#e8eaed] transition-colors"
           >
             <span className="text-sm font-medium text-[#1f1f1f]">PRO</span>
