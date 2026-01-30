@@ -69,7 +69,6 @@ export default function Home() {
                 key={demo.number}
                 number={demo.number}
                 title={demo.title}
-                subtitle={demo.subtitle}
                 description={demo.description}
                 status={demo.status}
                 href={demo.href}
