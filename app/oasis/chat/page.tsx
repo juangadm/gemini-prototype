@@ -15,6 +15,7 @@ export default function OasisChatPage() {
         showProBadge={true}
         showOfflineBadge={true}
         onMenuClick={() => setSidebarOpen(!sidebarOpen)}
+        subscriptionsUrl="/oasis/subscriptions"
       />
 
       {/* Main content */}
