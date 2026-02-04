@@ -41,7 +41,12 @@ export default function ModePicker({ selectedMode, onModeChange, offlineMode = f
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-[#e8eaed] transition-colors"
       >
-        <span className="text-sm text-[#5f6368]">{currentMode.name}</span>
+        <div className="flex flex-col items-start">
+          <span className="text-sm text-[#5f6368]">{currentMode.name}</span>
+          {offlineMode && selectedMode === 'fast' && (
+            <span className="text-[10px] text-[#137333] leading-tight">Quick answers, no signal needed</span>
+          )}
+        </div>
         <span className="material-symbols-outlined text-[#5f6368] text-lg">
           {isOpen ? 'expand_less' : 'expand_more'}
         </span>

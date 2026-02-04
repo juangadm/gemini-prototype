@@ -10,6 +10,7 @@ interface MainHeaderProps {
   showOfflineBadge?: boolean
   showWorkStats?: boolean
   subscriptionsUrl?: string
+  onDiscoveryCardOpen?: () => void
 }
 
 export default function MainHeader({
@@ -17,6 +18,7 @@ export default function MainHeader({
   showOfflineBadge = false,
   showWorkStats = false,
   subscriptionsUrl = '/subscriptions',
+  onDiscoveryCardOpen,
 }: MainHeaderProps) {
   const [workStatsOpen, setWorkStatsOpen] = useState(false)
 
@@ -85,6 +87,18 @@ export default function MainHeader({
 
       {/* Right section */}
       <div className="flex items-center gap-2">
+        {/* Demo button to open discovery card */}
+        {onDiscoveryCardOpen && (
+          <button
+            onClick={onDiscoveryCardOpen}
+            className="flex items-center gap-1 px-3 py-1.5 bg-[#e6f4ea] rounded-lg hover:bg-[#ceead6] transition-colors"
+            title="Open offline mode info"
+          >
+            <span className="material-symbols-outlined text-[#137333] text-lg">info</span>
+            <span className="text-sm font-medium text-[#137333]">Offline</span>
+          </button>
+        )}
+
         {showProBadge && (
           <Link
             href={subscriptionsUrl}

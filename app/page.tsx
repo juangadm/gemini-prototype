@@ -4,12 +4,12 @@ import DemoCard from '@/components/home/DemoCard'
 const demos = [
   {
     number: '01',
-    title: 'Project Oasis',
-    description: 'Nano available offline for paid subscribers. Upside lift with low cannibalization risk',
+    title: 'Project Jetstream',
+    description: 'Gemini works offline. Keeps subscribers productive on planes, metros, and roadtrips — cheaper than a single WiFi pass.',
     status: 'ready' as const,
-    href: '/oasis/chat',
+    href: '/jetstream/chat',
     docsUrl: 'https://docs.google.com/document/d/184mi1qCfB005RYHQzcc3GlIFbuEDE3wiLzIew9Gf5bo/edit',
-    docsLabel: 'Project Oasis',
+    docsLabel: 'Project Jetstream',
   },
   {
     number: '02',
