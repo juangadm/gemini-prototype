@@ -43,7 +43,7 @@ export const demoChats: Chat[] = [
         id: '1-2',
         role: 'assistant',
         content: 'Here\'s a photorealistic image of a futuristic city skyline at sunset:',
-        images: ['/demo/futuristic-city.jpg'],
+        images: ['/demo/futuristic-city.png'],
         timestamp: new Date('2024-01-15T10:30:30'),
       },
     ],

@@ -34,17 +34,16 @@ export default function MessageBubble({ message, bannerTier = 'pro', bannerExtra
         {/* Generated images */}
         {message.images && message.images.length > 0 && (
           <div className="mt-4 grid gap-3">
-            {message.images.map((_, index) => (
+            {message.images.map((imageSrc, index) => (
               <div
                 key={index}
-                className="image-placeholder w-full max-w-[400px] aspect-square rounded-2xl overflow-hidden"
+                className="w-full max-w-[400px] rounded-2xl overflow-hidden"
               >
-                <div className="w-full h-full flex flex-col items-center justify-center gap-3">
-                  <span className="material-symbols-outlined text-[#4285f4] text-5xl">
-                    image
-                  </span>
-                  <span className="text-sm text-[#5f6368]">Generated image</span>
-                </div>
+                <img
+                  src={imageSrc}
+                  alt="Generated image"
+                  className="w-full h-auto object-cover"
+                />
               </div>
             ))}
           </div>

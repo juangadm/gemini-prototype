@@ -45,7 +45,7 @@ export default function ChatArea({ offlineMode = false, onImageGenerated, defaul
           id: `ai-${Date.now()}`,
           role: 'assistant',
           content: 'Here\'s a photorealistic image of the Paris skyline at sunset:',
-          images: ['/demo/futuristic-city.jpg'],
+          images: ['/demo/futuristic-paris.png'],
           timestamp: new Date(),
           showValueBanner: true,
         }
