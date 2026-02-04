@@ -20,8 +20,13 @@ export default function WorkChatPage() {
     setImageCount(newCount)
   }
 
-  // Calculate extra generations beyond free tier
-  const extraGenerations = Math.max(1, imageCount - tierLimits.free.images)
+  // Extra generations shown in banner based on tier
+  const tierExtraGenerations = {
+    plus: 4,
+    pro: 8,
+    ultra: 12,
+  }
+  const extraGenerations = tierExtraGenerations[bannerTier]
 
   return (
     <div className="h-screen flex bg-white">
