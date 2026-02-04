@@ -14,6 +14,7 @@ interface ChatAreaProps {
 }
 
 const DEMO_PROMPT = 'Create a photorealistic image of a futuristic city skyline at sunset'
+const DEMO_FOLLOWUP_PROMPT = 'Make it futuristic Paris'
 
 export default function ChatArea({ offlineMode = false, onImageGenerated, defaultInputValue, defaultSelectedTool }: ChatAreaProps) {
   const [messages, setMessages] = useState<Message[]>([])
@@ -24,6 +25,30 @@ export default function ChatArea({ offlineMode = false, onImageGenerated, defaul
     // If sending the demo prompt, load demo conversation instead
     if (content === DEMO_PROMPT) {
       loadDemoChat()
+      return
+    }
+
+    // Handle the Paris follow-up in demo mode
+    if (content === DEMO_FOLLOWUP_PROMPT && showDemo) {
+      const userMessage: Message = {
+        id: `user-${Date.now()}`,
+        role: 'user',
+        content,
+        timestamp: new Date(),
+      }
+      setMessages((prev) => [...prev, userMessage])
+
+      setTimeout(() => {
+        const aiMessage: Message = {
+          id: `ai-${Date.now()}`,
+          role: 'assistant',
+          content: 'Here\'s a photorealistic image of the Paris skyline at sunset:',
+          images: ['/demo/futuristic-city.jpg'],
+          timestamp: new Date(),
+        }
+        setMessages((prev) => [...prev, aiMessage])
+        onImageGenerated?.()
+      }, 1000)
       return
     }
 
@@ -114,9 +139,10 @@ export default function ChatArea({ offlineMode = false, onImageGenerated, defaul
           </button>
         </div>
       ) : (
-        // Chat mode - messages with input at bottom
+        // Chat mode - flex layout with scrollable messages and fixed input
         <>
-          <div className="flex-1 overflow-y-auto light-scrollbar">
+          {/* Scrollable messages area */}
+          <div className="flex-1 overflow-y-auto light-scrollbar min-h-0">
             <div className="max-w-[800px] mx-auto px-4 py-8 space-y-8">
               {messages.map((message) => (
                 <MessageBubble key={message.id} message={message} />
@@ -124,13 +150,18 @@ export default function ChatArea({ offlineMode = false, onImageGenerated, defaul
             </div>
           </div>
 
-          {/* Input area - fixed at bottom */}
-          <InputArea
-            onSend={handleSend}
-            showSuggestions={false}
-            onQuickAction={handleQuickAction}
-            offlineMode={offlineMode}
-          />
+          {/* Input area - takes natural height at bottom */}
+          <div className="flex-shrink-0 bg-white">
+            <InputArea
+              key={showDemo ? 'demo' : 'chat'}
+              onSend={handleSend}
+              showSuggestions={false}
+              onQuickAction={handleQuickAction}
+              offlineMode={offlineMode}
+              defaultValue={showDemo ? DEMO_FOLLOWUP_PROMPT : ''}
+              selectedTool={showDemo ? 'create-images' : null}
+            />
+          </div>
         </>
       )}
     </div>

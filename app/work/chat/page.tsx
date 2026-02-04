@@ -40,7 +40,7 @@ export default function WorkChatPage() {
       />
 
       {/* Main content area */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col min-h-0">
         <MainHeader
           showProBadge={true}
           showWorkStats={true}
