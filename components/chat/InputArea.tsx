@@ -41,7 +41,7 @@ export default function InputArea({ onSend, showSuggestions, onQuickAction, offl
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Ask Gemini 3"
+            placeholder={offlineMode ? "Ask Gemini Nano" : "Ask Gemini 3"}
             rows={1}
             className="w-full bg-transparent text-[#1f1f1f] text-base placeholder-[#5f6368] resize-none outline-none min-h-[24px] max-h-[200px]"
             style={{ height: 'auto' }}

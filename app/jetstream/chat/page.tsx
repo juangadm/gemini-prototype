@@ -10,12 +10,12 @@ export default function JetstreamChatPage() {
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [discoveryCardOpen, setDiscoveryCardOpen] = useState(false)
 
-  // Auto-show discovery card on first visit (simulating offline detection)
+  // Auto-show discovery card for first 2 visits
   useEffect(() => {
-    const hasSeenCard = localStorage.getItem('jetstream-discovery-seen')
-    if (!hasSeenCard) {
+    const visitCount = parseInt(localStorage.getItem('jetstream-visit-count') || '0', 10)
+    if (visitCount < 2) {
       setDiscoveryCardOpen(true)
-      localStorage.setItem('jetstream-discovery-seen', 'true')
+      localStorage.setItem('jetstream-visit-count', String(visitCount + 1))
     }
   }, [])
 
