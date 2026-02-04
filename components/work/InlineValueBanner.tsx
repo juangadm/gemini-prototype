@@ -49,7 +49,7 @@ export default function InlineValueBanner({
   const tierLabel = tier.charAt(0).toUpperCase() + tier.slice(1)
 
   return (
-    <div className="mt-4 bg-white rounded-2xl border border-[#e8eaed] p-4 flex items-start gap-3 max-w-[700px]">
+    <div className="mt-4 bg-white rounded-2xl border border-[#e8eaed] p-4 flex items-start gap-3 max-w-[700px] animate-banner-pop">
       <div className="flex-shrink-0 mt-0.5">
         <GeminiSparkle />
       </div>

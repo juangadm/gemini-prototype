@@ -73,7 +73,11 @@ export default function MessageBubble({ message, bannerTier = 'pro', bannerExtra
 
         {/* Inline value banner */}
         {message.showValueBanner && (
-          <InlineValueBanner tier={bannerTier} extraGenerations={bannerExtraGenerations} />
+          <InlineValueBanner
+            key={`${bannerTier}-${bannerExtraGenerations}`}
+            tier={bannerTier}
+            extraGenerations={bannerExtraGenerations}
+          />
         )}
       </div>
 
