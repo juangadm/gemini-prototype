@@ -9,13 +9,24 @@ import GeminiLogo from '@/components/shared/GeminiLogo'
 interface ChatAreaProps {
   offlineMode?: boolean
   onImageGenerated?: () => void
+  defaultInputValue?: string
+  defaultSelectedTool?: string | null
 }
 
-export default function ChatArea({ offlineMode = false, onImageGenerated }: ChatAreaProps) {
+const DEMO_PROMPT = 'Create a photorealistic image of a futuristic city skyline at sunset'
+
+export default function ChatArea({ offlineMode = false, onImageGenerated, defaultInputValue, defaultSelectedTool }: ChatAreaProps) {
   const [messages, setMessages] = useState<Message[]>([])
   const [showDemo, setShowDemo] = useState(false)
+  const [selectedTool, setSelectedTool] = useState<string | null>(defaultSelectedTool ?? null)
 
   const handleSend = (content: string) => {
+    // If sending the demo prompt, load demo conversation instead
+    if (content === DEMO_PROMPT) {
+      loadDemoChat()
+      return
+    }
+
     const userMessage: Message = {
       id: `user-${Date.now()}`,
       role: 'user',
@@ -47,7 +58,8 @@ export default function ChatArea({ offlineMode = false, onImageGenerated }: Chat
 
   const handleQuickAction = (action: string) => {
     if (action === 'Create image') {
-      handleSend('Create a photorealistic image of a futuristic city skyline at sunset')
+      // Load demo conversation directly for "Create image" action
+      loadDemoChat()
     } else if (action === 'Create video') {
       handleSend('Create a short video of a peaceful nature scene')
     } else if (action === 'Write anything') {
@@ -89,6 +101,8 @@ export default function ChatArea({ offlineMode = false, onImageGenerated }: Chat
             showSuggestions={true}
             onQuickAction={handleQuickAction}
             offlineMode={offlineMode}
+            defaultValue={defaultInputValue || ''}
+            selectedTool={selectedTool}
           />
 
           {/* Demo button */}

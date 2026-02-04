@@ -46,7 +46,11 @@ export default function WorkChatPage() {
           showWorkStats={true}
           onTriggerToast={handleTriggerToast}
         />
-        <ChatArea onImageGenerated={handleImageGenerated} />
+        <ChatArea
+          onImageGenerated={handleImageGenerated}
+          defaultInputValue="Create a photorealistic image of a futuristic city skyline at sunset"
+          defaultSelectedTool="create-images"
+        />
       </div>
 
       {/* Value Toast */}
