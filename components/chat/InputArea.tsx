@@ -34,7 +34,7 @@ export default function InputArea({ onSend, showSuggestions, onQuickAction, offl
   }
 
   return (
-    <div className="w-full max-w-[800px] mx-auto px-4 pb-6">
+    <div className="w-full max-w-[800px] mx-auto px-4 pb-4">
       {/* Input container */}
       <div className="bg-[#f0f4f9] rounded-[32px] border border-gray-200">
         {/* Text input */}

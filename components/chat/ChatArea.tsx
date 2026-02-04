@@ -106,7 +106,7 @@ export default function ChatArea({ offlineMode = false, onImageGenerated, defaul
   const isEmpty = messages.length === 0
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-white">
+    <div className="flex-1 flex flex-col min-h-0 bg-white">
       {isEmpty ? (
         // Empty state - centered layout
         <div className="flex-1 flex flex-col items-center justify-center px-4">
@@ -139,10 +139,10 @@ export default function ChatArea({ offlineMode = false, onImageGenerated, defaul
           </button>
         </div>
       ) : (
-        // Chat mode - flex layout with scrollable messages and fixed input
+        // Chat mode - messages scroll, input fixed at bottom
         <>
-          {/* Scrollable messages area */}
-          <div className="flex-1 overflow-y-auto light-scrollbar min-h-0">
+          {/* Scrollable messages area with bottom padding for input */}
+          <div className="flex-1 overflow-y-auto light-scrollbar min-h-0 pb-36">
             <div className="max-w-[800px] mx-auto px-4 py-8 space-y-8">
               {messages.map((message) => (
                 <MessageBubble key={message.id} message={message} />
@@ -150,8 +150,8 @@ export default function ChatArea({ offlineMode = false, onImageGenerated, defaul
             </div>
           </div>
 
-          {/* Input area - takes natural height at bottom */}
-          <div className="flex-shrink-0 bg-white">
+          {/* Input area - fixed at bottom, uses flex-shrink-0 */}
+          <div className="flex-shrink-0 bg-white border-t border-transparent">
             <InputArea
               key={showDemo ? 'demo' : 'chat'}
               onSend={handleSend}
