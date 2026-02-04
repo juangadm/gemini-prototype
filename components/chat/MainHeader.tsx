@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import WorkStatsPopup from '@/components/work/WorkStatsPopup'
-import { dailyUsageStats } from '@/lib/mockData'
+import TierDemoDropdown from '@/components/work/TierDemoDropdown'
+import { dailyUsageStats, TierType } from '@/lib/mockData'
 
 interface MainHeaderProps {
   showProBadge?: boolean
@@ -11,6 +12,7 @@ interface MainHeaderProps {
   showWorkStats?: boolean
   subscriptionsUrl?: string
   onDiscoveryCardOpen?: () => void
+  onTriggerToast?: (tier: TierType) => void
 }
 
 export default function MainHeader({
@@ -19,6 +21,7 @@ export default function MainHeader({
   showWorkStats = false,
   subscriptionsUrl = '/subscriptions',
   onDiscoveryCardOpen,
+  onTriggerToast,
 }: MainHeaderProps) {
   const [workStatsOpen, setWorkStatsOpen] = useState(false)
 
@@ -97,6 +100,11 @@ export default function MainHeader({
             <span className="material-symbols-outlined text-[#137333] text-lg">info</span>
             <span className="text-sm font-medium text-[#137333]">Offline</span>
           </button>
+        )}
+
+        {/* Tier Demo Dropdown for triggering value toast */}
+        {showWorkStats && onTriggerToast && (
+          <TierDemoDropdown onTriggerToast={onTriggerToast} />
         )}
 
         {showProBadge && (

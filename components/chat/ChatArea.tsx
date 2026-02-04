@@ -8,9 +8,10 @@ import GeminiLogo from '@/components/shared/GeminiLogo'
 
 interface ChatAreaProps {
   offlineMode?: boolean
+  onImageGenerated?: () => void
 }
 
-export default function ChatArea({ offlineMode = false }: ChatAreaProps) {
+export default function ChatArea({ offlineMode = false, onImageGenerated }: ChatAreaProps) {
   const [messages, setMessages] = useState<Message[]>([])
   const [showDemo, setShowDemo] = useState(false)
 
@@ -26,16 +27,21 @@ export default function ChatArea({ offlineMode = false }: ChatAreaProps) {
 
     // Simulate AI response
     setTimeout(() => {
+      const hasImages = content.toLowerCase().includes('image')
       const aiMessage: Message = {
         id: `ai-${Date.now()}`,
         role: 'assistant',
-        content: content.toLowerCase().includes('image')
+        content: hasImages
           ? 'Here\'s what I created for you:'
           : 'I\'d be happy to help you with that! Let me think about this...',
-        images: content.toLowerCase().includes('image') ? ['/demo/generated.jpg'] : undefined,
+        images: hasImages ? ['/demo/generated.jpg'] : undefined,
         timestamp: new Date(),
       }
       setMessages((prev) => [...prev, aiMessage])
+
+      if (hasImages) {
+        onImageGenerated?.()
+      }
     }, 1000)
   }
 

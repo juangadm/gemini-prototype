@@ -81,6 +81,36 @@ body {
   animation: pulse-subtle 3s ease-in-out infinite;
 }
 
+/* Value Toast enter animation */
+@keyframes toast-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-toast-enter {
+  animation: toast-enter 250ms ease-out forwards;
+}
+
+/* Sparkle pulse animation for ValueToast */
+@keyframes sparkle-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-sparkle-pulse {
+  animation: sparkle-pulse 3s ease-in-out infinite;
+}
+
 /* Custom scrollbar for light theme */
 .light-scrollbar::-webkit-scrollbar {
   width: 8px;

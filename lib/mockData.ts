@@ -325,6 +325,15 @@ export const dailyUsageStats: DailyUsageStats = {
   resetTime: '8h 23m',
 }
 
+export const tierLimits = {
+  free: { images: 3, compareLabel: null },
+  plus: { images: 50, compareLabel: 'free users' },
+  pro: { images: 100, compareLabel: 'Plus users' },
+  ultra: { images: 1000, compareLabel: 'Pro users' },
+} as const
+
+export type TierType = 'plus' | 'pro' | 'ultra'
+
 export const faqItems = [
   {
     question: 'What\'s the difference between AI Pro and AI Ultra?',
