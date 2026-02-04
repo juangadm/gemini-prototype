@@ -6,9 +6,10 @@ import { tools } from '@/lib/mockData'
 interface ToolsMenuProps {
   onToolSelect?: (toolId: string) => void
   offlineMode?: boolean
+  selectedTool?: string | null
 }
 
-export default function ToolsMenu({ onToolSelect, offlineMode = false }: ToolsMenuProps) {
+export default function ToolsMenu({ onToolSelect, offlineMode = false, selectedTool = null }: ToolsMenuProps) {
   const [isOpen, setIsOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
 
@@ -36,10 +37,16 @@ export default function ToolsMenu({ onToolSelect, offlineMode = false }: ToolsMe
           offlineMode
             ? 'opacity-40 cursor-not-allowed'
             : 'hover:bg-[#e8eaed] cursor-pointer'
-        }`}
+        } ${selectedTool ? 'bg-[#e8eaed]' : ''}`}
       >
-        <span className="material-symbols-outlined text-[#5f6368] text-xl">page_info</span>
-        <span className="text-sm text-[#5f6368]">Tools</span>
+        {selectedTool === 'create-images' ? (
+          <span className="text-lg">🍌</span>
+        ) : (
+          <span className="material-symbols-outlined text-[#5f6368] text-xl">page_info</span>
+        )}
+        <span className="text-sm text-[#5f6368]">
+          {selectedTool === 'create-images' ? 'Create images' : 'Tools'}
+        </span>
       </button>
 
       {/* Offline tooltip */}

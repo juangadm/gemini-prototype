@@ -11,10 +11,12 @@ interface InputAreaProps {
   showSuggestions?: boolean
   onQuickAction?: (action: string) => void
   offlineMode?: boolean
+  defaultValue?: string
+  selectedTool?: string | null
 }
 
-export default function InputArea({ onSend, showSuggestions, onQuickAction, offlineMode = false }: InputAreaProps) {
-  const [message, setMessage] = useState('')
+export default function InputArea({ onSend, showSuggestions, onQuickAction, offlineMode = false, defaultValue = '', selectedTool = null }: InputAreaProps) {
+  const [message, setMessage] = useState(defaultValue)
   const [selectedMode, setSelectedMode] = useState('fast')
 
   const handleSubmit = () => {
@@ -56,7 +58,7 @@ export default function InputArea({ onSend, showSuggestions, onQuickAction, offl
             <AddMenu offlineMode={offlineMode} />
 
             {/* Tools menu */}
-            <ToolsMenu offlineMode={offlineMode} />
+            <ToolsMenu offlineMode={offlineMode} selectedTool={selectedTool} />
           </div>
 
           {/* Right tools - Mode picker, Mic, Send */}

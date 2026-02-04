@@ -1,13 +1,16 @@
 'use client'
 
-import { Message } from '@/lib/mockData'
+import { Message, TierType } from '@/lib/mockData'
 import GeminiLogo from '@/components/shared/GeminiLogo'
+import InlineValueBanner from '@/components/work/InlineValueBanner'
 
 interface MessageBubbleProps {
   message: Message
+  bannerTier?: TierType
+  bannerExtraGenerations?: number
 }
 
-export default function MessageBubble({ message }: MessageBubbleProps) {
+export default function MessageBubble({ message, bannerTier = 'pro', bannerExtraGenerations = 1 }: MessageBubbleProps) {
   const isUser = message.role === 'user'
 
   return (
@@ -31,17 +34,16 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
         {/* Generated images */}
         {message.images && message.images.length > 0 && (
           <div className="mt-4 grid gap-3">
-            {message.images.map((_, index) => (
+            {message.images.map((imageSrc, index) => (
               <div
                 key={index}
-                className="image-placeholder w-full max-w-[400px] aspect-square rounded-2xl overflow-hidden"
+                className="w-full max-w-[400px] rounded-2xl overflow-hidden"
               >
-                <div className="w-full h-full flex flex-col items-center justify-center gap-3">
-                  <span className="material-symbols-outlined text-[#4285f4] text-5xl">
-                    image
-                  </span>
-                  <span className="text-sm text-[#5f6368]">Generated image</span>
-                </div>
+                <img
+                  src={imageSrc}
+                  alt="Generated image"
+                  className="w-full h-auto object-cover"
+                />
               </div>
             ))}
           </div>
@@ -66,6 +68,15 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
               <span className="material-symbols-outlined text-[#5f6368] text-xl">more_vert</span>
             </button>
           </div>
+        )}
+
+        {/* Inline value banner */}
+        {message.showValueBanner && (
+          <InlineValueBanner
+            key={`${bannerTier}-${bannerExtraGenerations}`}
+            tier={bannerTier}
+            extraGenerations={bannerExtraGenerations}
+          />
         )}
       </div>
 

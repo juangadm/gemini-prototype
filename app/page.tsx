@@ -13,8 +13,8 @@ const demos = [
   },
   {
     number: '02',
-    title: 'Gemini \'Work\' Tooltip',
-    description: 'Show the labor of Gemini to consistently demonstrate the value users are getting from subscription',
+    title: 'Paid Reinforcement',
+    description: 'Subtle, tasteful reminders showing users the extra value they\'re getting — right where they\'re already engaged',
     status: 'ready' as const,
     href: '/work/chat',
   },

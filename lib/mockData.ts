@@ -4,6 +4,7 @@ export interface Message {
   content: string
   images?: string[]
   timestamp: Date
+  showValueBanner?: boolean
 }
 
 export interface Chat {
@@ -42,7 +43,7 @@ export const demoChats: Chat[] = [
         id: '1-2',
         role: 'assistant',
         content: 'Here\'s a photorealistic image of a futuristic city skyline at sunset:',
-        images: ['/demo/futuristic-city.jpg'],
+        images: ['/demo/futuristic-city.png'],
         timestamp: new Date('2024-01-15T10:30:30'),
       },
     ],
@@ -324,6 +325,15 @@ export const dailyUsageStats: DailyUsageStats = {
   },
   resetTime: '8h 23m',
 }
+
+export const tierLimits = {
+  free: { images: 3, compareLabel: null },
+  plus: { images: 50, compareLabel: 'free users' },
+  pro: { images: 100, compareLabel: 'Plus users' },
+  ultra: { images: 1000, compareLabel: 'Pro users' },
+} as const
+
+export type TierType = 'plus' | 'pro' | 'ultra'
 
 export const faqItems = [
   {
