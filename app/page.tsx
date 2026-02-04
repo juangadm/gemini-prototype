@@ -5,11 +5,11 @@ const demos = [
   {
     number: '01',
     title: 'Project Jetstream',
-    description: 'Gemini works offline. Keeps subscribers productive on planes, metros, and roadtrips — cheaper than a single WiFi pass.',
+    description: 'Gemini Nano for offline mode, available for subscribers. Keep users productive on planes, metros, and roadtrips — with 0 marginal cost to Google.',
     status: 'ready' as const,
     href: '/jetstream/chat',
-    docsUrl: 'https://docs.google.com/document/d/184mi1qCfB005RYHQzcc3GlIFbuEDE3wiLzIew9Gf5bo/edit',
-    docsLabel: 'Project Jetstream',
+    docsUrl: 'https://docs.google.com/document/d/1qlMCzGdfNN8ZOTXV9CV3lf_WVsPIv0W4PBjMqh_06Bg/edit?tab=t.0',
+    docsLabel: 'Jetstream spec',
   },
   {
     number: '02',
