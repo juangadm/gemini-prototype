@@ -41,7 +41,7 @@ export default function ModePicker({ selectedMode, onModeChange, offlineMode = f
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-[#e8eaed] transition-colors"
       >
-        <span className="text-sm text-[#5f6368]">{currentMode.name}</span>
+        <span className="text-sm text-[#5f6368]">{offlineMode && currentMode.id === 'fast' ? 'Nano' : currentMode.name}</span>
         <span className="material-symbols-outlined text-[#5f6368] text-lg">
           {isOpen ? 'expand_less' : 'expand_more'}
         </span>
@@ -76,15 +76,17 @@ export default function ModePicker({ selectedMode, onModeChange, offlineMode = f
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
                         <span className={`text-sm font-medium ${isDisabled ? 'text-[#5f6368]' : 'text-[#1f1f1f]'}`}>
-                          {mode.name}
+                          {offlineMode && mode.id === 'fast' ? 'Nano' : mode.name}
                         </span>
-                        {mode.badge && !isDisabled && (
+                        {mode.badge && !isDisabled && !offlineMode && (
                           <span className="px-1.5 py-0.5 text-[10px] font-medium text-[#1a73e8] bg-[#e8f0fe] rounded">
                             {mode.badge}
                           </span>
                         )}
                       </div>
-                      <span className="text-xs text-[#5f6368]">{mode.description}</span>
+                      <span className="text-xs text-[#5f6368]">
+                        {offlineMode && mode.id === 'fast' ? 'Simple tasks, running on-device' : mode.description}
+                      </span>
                     </div>
 
                     {/* Checkmark for selected */}
