@@ -9,7 +9,7 @@ const demos = [
     status: 'ready' as const,
     href: '/jetstream/chat',
     docsUrl: 'https://docs.google.com/document/d/1qlMCzGdfNN8ZOTXV9CV3lf_WVsPIv0W4PBjMqh_06Bg/edit?tab=t.0',
-    docsLabel: 'Jetstream spec',
+    docsLabel: 'Jetstream Spec',
   },
   {
     number: '02',
