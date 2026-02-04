@@ -66,9 +66,32 @@ Include Offline Mode starting at Google AI Plus tier. Also available on Pro and 
 
 **Primary driver:** Keep paid subscribers engaged during connectivity gaps → reduces churn, increases satisfaction.
 
+### Quantified Opportunity
+
+| Assumption | Value | Benchmark |
+|------------|-------|-----------|
+| Gemini MAU | 650M | Oct 2024 |
+| Subscriber rate | 4% | YT Premium ~5% of MAU |
+| Paid subscribers | 26M | — |
+| Monthly churn | 8% | Video streaming avg 5-10%¹ |
+| Churning/month | 2.08M | — |
+| Blended ARPU | $25 | — |
+
+**Churn reduction impact:**
+
+| If Jetstream reduces churn by... | Saved Subs/Month | Annual Revenue Saved |
+|----------------------------------|------------------|---------------------|
+| 5% | 104K | **$31.2M** |
+| 10% | 208K | **$62.4M** |
+| 20% | 416K | **$124.8M** |
+
+*¹ Source: [Churnkey Streaming Churn Analysis](https://churnkey.co/blog/churn-rates-for-streaming-services/) — Spotify Premium at 3.9%, video streaming 5-10%, industry avg 5.5% (2025)*
+
+**Why this works:**
 - Subscribers stay productive when they'd otherwise be idle
 - Reinforces value of subscription in "dead zone" moments
 - Low cannibalization risk: users who want Pro/Ultra features still upgrade
+- Zero marginal cost — models run on-device
 
 **Value prop framing:** Your subscription pays for itself vs. a single WiFi pass on a flight.
 
