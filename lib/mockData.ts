@@ -4,6 +4,7 @@ export interface Message {
   content: string
   images?: string[]
   timestamp: Date
+  showValueBanner?: boolean
 }
 
 export interface Chat {

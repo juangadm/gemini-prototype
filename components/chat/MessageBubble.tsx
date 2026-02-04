@@ -1,13 +1,16 @@
 'use client'
 
-import { Message } from '@/lib/mockData'
+import { Message, TierType } from '@/lib/mockData'
 import GeminiLogo from '@/components/shared/GeminiLogo'
+import InlineValueBanner from '@/components/work/InlineValueBanner'
 
 interface MessageBubbleProps {
   message: Message
+  bannerTier?: TierType
+  bannerExtraGenerations?: number
 }
 
-export default function MessageBubble({ message }: MessageBubbleProps) {
+export default function MessageBubble({ message, bannerTier = 'pro', bannerExtraGenerations = 1 }: MessageBubbleProps) {
   const isUser = message.role === 'user'
 
   return (
@@ -66,6 +69,11 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
               <span className="material-symbols-outlined text-[#5f6368] text-xl">more_vert</span>
             </button>
           </div>
+        )}
+
+        {/* Inline value banner */}
+        {message.showValueBanner && (
+          <InlineValueBanner tier={bannerTier} extraGenerations={bannerExtraGenerations} />
         )}
       </div>
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Message, quickActions, demoChats } from '@/lib/mockData'
+import { Message, quickActions, demoChats, TierType } from '@/lib/mockData'
 import MessageBubble from './MessageBubble'
 import InputArea from './InputArea'
 import GeminiLogo from '@/components/shared/GeminiLogo'
@@ -11,12 +11,14 @@ interface ChatAreaProps {
   onImageGenerated?: () => void
   defaultInputValue?: string
   defaultSelectedTool?: string | null
+  bannerTier?: TierType
+  bannerExtraGenerations?: number
 }
 
 const DEMO_PROMPT = 'Create a photorealistic image of a futuristic city skyline at sunset'
 const DEMO_FOLLOWUP_PROMPT = 'Make it futuristic Paris'
 
-export default function ChatArea({ offlineMode = false, onImageGenerated, defaultInputValue, defaultSelectedTool }: ChatAreaProps) {
+export default function ChatArea({ offlineMode = false, onImageGenerated, defaultInputValue, defaultSelectedTool, bannerTier = 'pro', bannerExtraGenerations = 1 }: ChatAreaProps) {
   const [messages, setMessages] = useState<Message[]>([])
   const [showDemo, setShowDemo] = useState(false)
   const [selectedTool, setSelectedTool] = useState<string | null>(defaultSelectedTool ?? null)
@@ -45,6 +47,7 @@ export default function ChatArea({ offlineMode = false, onImageGenerated, defaul
           content: 'Here\'s a photorealistic image of the Paris skyline at sunset:',
           images: ['/demo/futuristic-city.jpg'],
           timestamp: new Date(),
+          showValueBanner: true,
         }
         setMessages((prev) => [...prev, aiMessage])
         onImageGenerated?.()
@@ -145,7 +148,12 @@ export default function ChatArea({ offlineMode = false, onImageGenerated, defaul
           <div className="flex-1 overflow-y-auto light-scrollbar min-h-0 pb-36">
             <div className="max-w-[800px] mx-auto px-4 py-8 space-y-8">
               {messages.map((message) => (
-                <MessageBubble key={message.id} message={message} />
+                <MessageBubble
+                  key={message.id}
+                  message={message}
+                  bannerTier={bannerTier}
+                  bannerExtraGenerations={bannerExtraGenerations}
+                />
               ))}
             </div>
           </div>
