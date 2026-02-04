@@ -123,13 +123,26 @@ export default function OfflineDiscoveryCard({ isOpen, onClose, onLearnMore }: O
               width: '100%',
             }}
           >
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <p>
-                You&apos;re offline, but Gemini has you covered. Get quick answers,
-                summarize content, and draft messages — no connection needed.
+                You&apos;re offline, but Gemini has you covered with quick answers
+                and simple tasks — powered by on-device AI.
               </p>
+
+              {/* What works offline */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                {['Summarize content', 'Answer questions', 'Describe images', 'Draft and rewrite text'].map((item) => (
+                  <div key={item} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span className="material-symbols-outlined" style={{ fontSize: '18px', color: '#137333' }}>
+                      check
+                    </span>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+
               <p style={{ color: 'rgb(95, 99, 104)' }}>
-                Available with Google AI Plus and above.
+                Some features like image generation require a connection.
               </p>
             </div>
           </div>
