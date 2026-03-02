@@ -39,12 +39,12 @@ export default function Home() {
 
           {/* Title */}
           <h1 className="text-4xl md:text-5xl font-medium text-black mb-4">
-            Gemini Monetization
+            Gemini Retention
           </h1>
 
           {/* Subtitle */}
           <p className="text-lg text-[#5f6368] mb-6 max-w-2xl mx-auto">
-            Working prototypes to improve paid subscription and retention for Gemini App
+            Working prototypes to improve retention for paid subscribers and small businesses
           </p>
 
           {/* Author */}
