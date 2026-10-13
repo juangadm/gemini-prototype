@@ -2,7 +2,7 @@
 
 **TLDR:** AI that works when connectivity doesn't. Gemini Nano runs locally on Android phones and Chrome browsers, keeping paid subscribers productive during planes, metros, and roadtrips. A few dollars/month for offline AI is cheaper than a single WiFi pass on a cross-country flight.
 
-*Prepared by Juan Gabriel Delgado ([LinkedIn](https://linkedin.com/in/juangadm) / [Portfolio](https://juangabriel.xyz))*
+*Prepared by Juan Gabriel Delgado ([LinkedIn](https://linkedin.com/in/juangadm) / [Portfolio](https://juangabriel.org))*
 
 ---
 

@@ -54,7 +54,7 @@ export default function Home() {
             </p>
             <div className="flex justify-center gap-4">
               <a
-                href="https://juangabriel.xyz"
+                href="https://juangabriel.org"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-[#1a73e8] hover:underline"
